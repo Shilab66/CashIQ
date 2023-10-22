@@ -2,3 +2,4 @@ streamlit
 pytesseract
 opencv-python-headless
 pillow
+requests
