@@ -1,3 +1,4 @@
-tesseract-ocr
-open-cv
-requests
+streamlit
+opencv-python-headless
+pytesseract
+Pillow
