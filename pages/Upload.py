@@ -20,6 +20,14 @@ def preprocess_image(image):
 
     return enhanced
 
+def ocr(image):
+    # Preprocess the image
+    preprocessed_image = preprocess_image(image)
+
+    # Perform OCR
+    text = pytesseract.image_to_string(preprocessed_image)
+    return text
+
 def ocr_from_stream(file_stream):
     pil_image = Image.open(file_stream)
     image = np.array(pil_image)
