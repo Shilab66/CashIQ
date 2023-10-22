@@ -16,18 +16,18 @@ for value in data.values():  # Iterate over the values of the dictionary
     store = value["store"]
     purchases = value["purchases"]
 
-    if store in storeList:
-        storeList[store] += 1
-    else:
-        storeList[store] = 1
-
     for i in purchases:
+        if store.lower() in storeList:
+            storeList[store.lower()] += 1
+        else:
+            storeList[store.lower()] = 1
+
         category = i["category"]
 
-        if category in categoryList:
-            categoryList[category] += 1
+        if category.lower() in categoryList:
+            categoryList[category.lower()] += 1
         else:
-            categoryList[category] = 1
+            categoryList[category.lower()] = 1
 
 st.write("## Dashboard")
 
