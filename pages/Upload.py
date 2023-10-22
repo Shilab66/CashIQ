@@ -10,7 +10,7 @@ import json
 itemCount = 0;
 
 # File path to send ocr submissions
-file_path = 'sumbissions.json'
+file_path = 'submissions.json'
 
 # Set your API key here
 api_key = st.secrets["OPENAI_KEY"]
@@ -21,13 +21,13 @@ openai.api_key = api_key
 # Prompt to give to chat gpt
 prompt = "given the raw text information from a reciept, could you seperaterate purchases into groups and recognize the store the its purchased from in a json file format absolutely, always, please make sure that the json file only includes the purchases, with NO additional info. Only have a json file, no other words."
 
-"""def chat_with_gpt(input_text):
-    response = openai.Completion.create(
-        engine="davinci",  # You can use "davinci" or "text-davinci-003" as the engine.
-        prompt=input_text,
-        max_tokens=100  # Adjust this value to limit the length of the response.
-    )
-    return response.choices[0].text.strip()"""
+# def chat_with_gpt(input_text):
+    # response = openai.Completion.create(
+        # engine="davinci",  # You can use "davinci" or "text-davinci-003" as the engine.
+        # prompt=input_text,
+        # max_tokens=100  # Adjust this value to limit the length of the response.
+    # )
+    # return response.choices[0].text.strip()
 
 
 def preprocess_image(image):
@@ -64,7 +64,7 @@ def ocr_from_stream(file_stream):
 
 
 # write the title
-st.title("# Upload")
+st.write("# Upload")
 
 # file upload component
 uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "png", "jpeg"])
@@ -72,13 +72,13 @@ uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "png", "jpeg
 if uploaded_file is not None:
     itemCount += 1;
 
-    st.image(uploaded_file, caption="Uploaded Image.", use_column_width=True)
+    st.image(uploaded_file, use_column_width=True)
 
     st.write("...")
 
     # Perform OCR
     text = ocr_from_stream(uploaded_file)
-    st.write("Submitted!!")
+    st.write("## Submitted!!")
 
     user_input = prompt + "\n" + text
     # response = chat_with_gpt(user_input)
