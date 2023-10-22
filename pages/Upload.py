@@ -1,9 +1,6 @@
 import streamlit as st
-import cv2
-import numpy as np
 import pytesseract
 from PIL import Image, ImageOps, ImageFilter
-from io import BytesIO
 
 def extractText(uploaded_file):
     # Convert the uploaded file to an image
