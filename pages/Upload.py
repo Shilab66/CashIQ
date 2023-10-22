@@ -28,6 +28,10 @@ def ocr(image):
     text = pytesseract.image_to_string(preprocessed_image)
     return text
 
+def ocr_from_file(file_path):
+    image = cv2.imread(file_path)
+    return ocr(image)
+
 def ocr_from_stream(file_stream):
     pil_image = Image.open(file_stream)
     image = np.array(pil_image)
