@@ -79,8 +79,6 @@ if uploaded_file is not None:
     # Perform OCR
     text = ocr_from_stream(uploaded_file)
 
-    st.write(text)
-
     st.write("## Submitted!!")
 
     user_input = prompt + "\n" + text
@@ -90,7 +88,7 @@ if uploaded_file is not None:
         existing_data = json.load(file)
 
     # Update the existing data with the new data
-    existing_data.update("receipt " + str(itemCount) + text)
+    existing_data.update(text)
 
     # Write the updated data back to the file
     with open(file_path, 'w') as file:
