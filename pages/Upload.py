@@ -1,9 +1,9 @@
+import os
 import cv2
 import streamlit as st
 from PIL import Image
 import pytesseract
 import numpy as np
-
 import openai
 
 # Set your API key here
@@ -69,4 +69,4 @@ if uploaded_file is not None:
 
     user_input = "What is the capital of France?"
     response = chat_with_gpt(user_input)
-    st.write(response)
+    print(response)
