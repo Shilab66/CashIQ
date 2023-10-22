@@ -25,7 +25,12 @@ def ocr(image):
     if isinstance(image, str):
         image = cv2.imread(image)
     else:
-        image = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
+        # Convert to numpy array
+        image = np.array(image)
+        if image.shape[-1] == 4:  # If it's a PNG image with an alpha channel
+            image = cv2.cvtColor(image, cv2.COLOR_RGBA2BGR)
+        else:
+            image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
 
     # Preprocess the image
     preprocessed_image = preprocess_image(image)
