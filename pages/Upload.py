@@ -19,7 +19,7 @@ api_key = st.secrets["OPENAI_KEY"]
 openai.api_key = api_key
 
 # Prompt to give to chat gpt
-prompt = "given the raw text information from a reciept, could you seperaterate purchases into groups and recognize the store the its purchased from in a json file format absolutely, always, please make sure that the json file only includes the purchases, with NO additional info. Only have a json file, no other words."
+prompt = "given the raw text information from a receipt, could you separate purchases and recognize the store the its purchased from in a json file format. Only have a json file with purchases, no other words. For each item , be sure to have a name and total price, but also include the general category of the purchase."
 
 # def chat_with_gpt(input_text):
     # response = openai.Completion.create(
@@ -78,6 +78,9 @@ if uploaded_file is not None:
 
     # Perform OCR
     text = ocr_from_stream(uploaded_file)
+
+    st.write(text)
+
     st.write("## Submitted!!")
 
     user_input = prompt + "\n" + text
@@ -87,7 +90,7 @@ if uploaded_file is not None:
         existing_data = json.load(file)
 
     # Update the existing data with the new data
-    existing_data.update("receipt " + itemCount + ": {" + text + "}")
+    existing_data.update("receipt " + str(itemCount) + ": {" + text + "}")
 
     # Write the updated data back to the file
     with open(file_path, 'w') as file:
