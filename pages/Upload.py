@@ -87,9 +87,6 @@ if uploaded_file is not None:
     with open(file_path, 'r') as file:
         existing_data = json.load(file)
 
-    # Update the existing data with the new data
-    existing_data.update(text)
-
     # Write the updated data back to the file
     with open(file_path, 'w') as file:
         json.dump(existing_data, file)
