@@ -1,7 +1,8 @@
-import cv2
 import streamlit as st
 from PIL import Image
 import pytesseract
+import cv2
+
 def preprocess_image(image):
     # Convert to grayscale
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -21,16 +22,13 @@ def preprocess_image(image):
 def ocr(image):
     # Open the image
     if isinstance(image, str):
-        image = Image.open(image)
         image = cv2.imread(image)
     else:
-        image = Image.open(image)
-        image = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
+        image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
 
     # Preprocess the image
     preprocessed_image = preprocess_image(image)
 
-    text = pytesseract.image_to_string(image)
     # Perform OCR
     text = pytesseract.image_to_string(preprocessed_image)
     return text
