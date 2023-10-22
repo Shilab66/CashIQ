@@ -20,24 +20,10 @@ def preprocess_image(image):
 
     return enhanced
 
-def ocr(image):
-    # Open the image
-    if isinstance(image, str):
-        image = cv2.imread(image)
-    else:
-        # Convert to numpy array
-        image = np.array(image)
-        if image.shape[-1] == 4:  # If it's a PNG image with an alpha channel
-            image = cv2.cvtColor(image, cv2.COLOR_RGBA2BGR)
-        else:
-            image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
-
-    # Preprocess the image
-    preprocessed_image = preprocess_image(image)
-
-    # Perform OCR
-    text = pytesseract.image_to_string(preprocessed_image)
-    return text
+def ocr_from_stream(file_stream):
+    pil_image = Image.open(file_stream)
+    image = np.array(pil_image)
+    return ocr(image)
 
 st.title("# Upload")
 
@@ -49,6 +35,6 @@ if uploaded_file is not None:
     st.write("Classifying...")
 
     # Perform OCR
-    text = ocr(uploaded_file)
+    text = ocr_from_stream(uploaded_file)
 
     st.write(f"**Extracted Text:**\n\n{text}")
