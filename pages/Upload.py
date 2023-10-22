@@ -4,6 +4,23 @@ from PIL import Image
 import pytesseract
 import numpy as np
 
+import openai
+
+# Set your API key here
+api_key = os.getenv("OPENAI_API_KEY")
+
+# Initialize OpenAI API client
+openai.api_key = api_key
+
+def chat_with_gpt(input_text):
+    response = openai.Completion.create(
+        engine="davinci",  # You can use "davinci" or "text-davinci-003" as the engine.
+        prompt=input_text,
+        max_tokens=100  # Adjust this value to limit the length of the response.
+    )
+    return response.choices[0].text.strip()
+
+
 def preprocess_image(image):
     # Convert to grayscale
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -49,3 +66,7 @@ if uploaded_file is not None:
     text = ocr_from_stream(uploaded_file)
 
     st.write(f"**Extracted Text:**\n\n{text}")
+
+    user_input = "What is the capital of France?"
+    response = chat_with_gpt(user_input)
+    st.write(response)
