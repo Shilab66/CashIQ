@@ -2,7 +2,7 @@ import cv2
 import streamlit as st
 from PIL import Image
 import pytesseract
-import numpy
+import numpy as np
 
 def preprocess_image(image):
     # Convert to grayscale
