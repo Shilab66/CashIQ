@@ -28,17 +28,16 @@ def ocr_func(image):
     text = pytesseract.image_to_string(preprocessed_image)
     return text
 
-def ocr_from_file(file_path):
-    image = cv2.imread(file_path)
-    return ocr_func(image)
-
+#Takes the ocr and runs it with ab incoming stream
 def ocr_from_stream(file_stream):
     pil_image = Image.open(file_stream)
     image = np.array(pil_image)
     return ocr_func(image)
 
+#write the title
 st.title("# Upload")
 
+#file upload component
 uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "png", "jpeg"])
 
 if uploaded_file is not None:
