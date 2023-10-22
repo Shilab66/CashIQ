@@ -2,6 +2,8 @@ import cv2
 import streamlit as st
 from PIL import Image
 import pytesseract
+import numpy
+
 def preprocess_image(image):
     # Convert to grayscale
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
