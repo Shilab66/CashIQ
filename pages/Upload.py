@@ -1,20 +1,14 @@
-import numpy as np
 import streamlit as st
-from PIL import Image, ImageOps, ImageFilter
-import easyocr
+from io import BytesIO
+import textract
 
 def extractText(uploaded_file, ):
-    # Convert the uploaded file to an image
-    image = Image.open(uploaded_file)
+    #Convert the uploaded file to bytes
+    file_content = uploaded_file.read()
 
-    # Initialize the OCR reader
-    reader = easyocr.Reader(['en'])
-
-    # Perform OCR on the image
-    results = reader.readtext(np.array(image))
-
-    # Extract text from the results
-    text = ' '.join([result[1] for result in results])
+    # Use textract to extract text
+    text = textract.process(BytesIO(file_content))
+    text = text.decode('utf-8')
 
     return text
 
