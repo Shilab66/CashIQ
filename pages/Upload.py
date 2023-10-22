@@ -20,7 +20,7 @@ def preprocess_image(image):
 
     return enhanced
 
-def ocr(image):
+def ocr_func(image):
     # Preprocess the image
     preprocessed_image = preprocess_image(image)
 
@@ -30,12 +30,12 @@ def ocr(image):
 
 def ocr_from_file(file_path):
     image = cv2.imread(file_path)
-    return ocr(image)
+    return ocr_func(image)
 
 def ocr_from_stream(file_stream):
     pil_image = Image.open(file_stream)
     image = np.array(pil_image)
-    return ocr(image)
+    return ocr_func(image)
 
 st.title("# Upload")
 
