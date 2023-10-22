@@ -1,19 +1,21 @@
+import numpy as np
 import streamlit as st
 import pytesseract
 from PIL import Image, ImageOps, ImageFilter
+import easyocr
 
-def extractText(uploaded_file):
+def extractText(uploaded_file, ):
     # Convert the uploaded file to an image
     image = Image.open(uploaded_file)
 
-    # Convert to grayscale
-    gray_image = ImageOps.grayscale(image)
+    # Initialize the OCR reader
+    reader = easyocr.Reader(['en'])
 
-    # Apply Gaussian blur to reduce noise
-    blurred_image = gray_image.filter(ImageFilter.GaussianBlur(radius=2))
+    # Perform OCR on the image
+    results = reader.readtext(np.array(image))
 
-    # Use Tesseract to do OCR on the image
-    text = pytesseract.image_to_string(blurred_image)
+    # Extract text from the results
+    text = ' '.join([result[1] for result in results])
 
     return text
 
