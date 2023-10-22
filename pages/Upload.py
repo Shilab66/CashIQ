@@ -2,33 +2,6 @@ import cv2
 import streamlit as st
 import numpy as np
 import pytesseract
-import requests
-
-def chat_with_gpt(input_string):
-    api_key = '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'  # Replace with your actual API key
-    url = 'https://api.openai.com/v1/chat/completions'
-
-    headers = {
-        'Authorization': f'Bearer {api_key}',
-        'Content-Type': 'application/json'
-    }
-
-    data = {
-        'messages': [
-            {'role': 'system', 'content': 'You are a helpful assistant.'},
-            {'role': 'user', 'content': input_string}
-        ]
-    }
-
-    response = requests.post(url, headers=headers, json=data)
-
-    if response.status_code == 200:
-        return response.json()['choices'][0]['message']['content']
-    else:
-        return f"Error: {response.status_code} - {response.text}"
-
-
-
 def preprocess_image(image):
     # Convert to grayscale
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -50,7 +23,7 @@ def ocr(image):
     if isinstance(image, str):
         image = cv2.imread(image)
     else:
-        image = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
+        image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
 
     # Preprocess the image
     preprocessed_image = preprocess_image(image)
