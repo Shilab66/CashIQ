@@ -49,7 +49,7 @@
   },
 
   "reciept 3": {
-    "store": "TA R GET",
+    "store": "TARGET",
     "purchases": [
       {
         "item": "UPUP HOUSEHOLD J",
