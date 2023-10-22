@@ -3,6 +3,11 @@ from PIL import Image
 import pytesseract
 
 def ocr(image):
+    if isinstance(image, str):
+        image = Image.open(image)
+    else:
+        image = Image.open(image)
+
     text = pytesseract.image_to_string(image)
     return text
 
