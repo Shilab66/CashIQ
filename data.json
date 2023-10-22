@@ -1,0 +1,32 @@
+{
+  "reciept 01": {
+    "store": "Walmart",
+    "purchases": [
+      {
+        "name": "20IN FRY",
+        "total_price": "$28.52",
+        "category": "Groceries"
+      },
+      {
+        "name": "CRM CHKN",
+        "total_price": "$7.87",
+        "category": "Groceries"
+      },
+      {
+        "name": "CRM CHEN",
+        "total_price": "$7.87",
+        "category": "Groceries"
+      },
+      {
+        "name": "MUSH 4PK",
+        "total_price": "$9.51",
+        "category": "Groceries"
+      },
+      {
+        "name": "VALUE",
+        "total_price": "$7.87",
+        "category": "Groceries"
+      }
+    ]
+  }
+}
